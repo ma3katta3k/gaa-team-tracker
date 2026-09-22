@@ -164,7 +164,20 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`Validation passed (${data.players.length} players, ${data.matches.length} matches).`);
+const totalAppearances = data.matches.reduce((sum, m) => sum + m.appearances.length, 0);
+const birthYearCounts = { confirmed: 0, assumed: 0, unknown: 0 };
+for (const p of data.players) birthYearCounts[p.birth_year_status]++;
+
+console.log(`Validation passed.`);
+console.log(`  Players:      ${data.players.length}`);
+console.log(`  Matches:      ${data.matches.length}`);
+console.log(`  Appearances:  ${totalAppearances}`);
+console.log(`  Birth year:   ${birthYearCounts.confirmed} confirmed, ${birthYearCounts.assumed} assumed, ${birthYearCounts.unknown} unknown`);
+
+if (process.argv.includes("--check")) {
+  console.log("\n--check mode: validation only, database not touched.");
+  process.exit(0);
+}
 
 // ---------------------------------------------------------------------------
 // Wrangler helpers

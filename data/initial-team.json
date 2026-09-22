@@ -6,23 +6,168 @@
   },
   "players": [
     {
-      "name": "Rian Rogan",
-      "birth_year": 2009,
-      "birth_year_status": "confirmed"
-    },
-    {
       "name": "Dylan Collins",
       "birth_year": null,
       "birth_year_status": "unknown"
     },
     {
-      "name": "Cian Doyle",
+      "name": "James O'Brien",
       "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Theo Dunne",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Patrick Corcoran",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Ronan McNally",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Seb Kenny",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Louis Burke",
+      "birth_year": 2008,
       "birth_year_status": "assumed"
     },
     {
-      "name": "Sean Fitzpatrick",
+      "name": "Rian Rogan",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Liam Hogan",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Jack Johnston",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Daniel Burns",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Jamie Condron",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Cillian Brennan",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Ben Donnery",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Cillian McCauley",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Alex Harris",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Adam Kerr",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Frankie May",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Killian Lyons",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Shane Rafter",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Oisín Cronin",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Tadgh McGowan",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Liam Fitzgerald",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Brian McIntyre-Barn",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Ronan Neville",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "C Smullen",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Robert Bolton",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Darragh Fay",
       "birth_year": 2010,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Finn O'Donnell",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Eoghan Madden",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Charlie O'Connell",
+      "birth_year": 2008,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Robert Cotter",
+      "birth_year": 2010,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Louis Burel",
+      "birth_year": 2009,
       "birth_year_status": "confirmed"
     }
   ],
@@ -32,77 +177,23 @@
       "opponent": "Clontarf",
       "competition": "Minor Football League Division 2",
       "score": {
-        "for": { "goals": 2, "points": 8 },
-        "against": { "goals": 1, "points": 10 }
+        "for": {
+          "goals": 2,
+          "points": 8
+        },
+        "against": {
+          "goals": 1,
+          "points": 10
+        }
       },
       "report_status": "full",
       "source": {
         "type": "club_report",
-        "reference": "club match report"
+        "reference": "Club report dated 28-Feb-2026; official fixture listing appears to use 01-Mar-2026."
       },
       "appearances": [
-        {
-          "player": "Rian Rogan",
-          "appearance": "start",
-          "shirt": 8,
-          "position": "MF",
-          "goals": 0,
-          "points": 5,
-          "frees": 3,
-          "two_pointers": 0,
-          "notes": null
-        },
-        {
-          "player": "Cian Doyle",
-          "appearance": "start",
-          "shirt": 3,
-          "position": "FB",
-          "goals": 0,
-          "points": 0,
-          "frees": null,
-          "two_pointers": 0,
-          "notes": null
-        },
         {
           "player": "Dylan Collins",
-          "appearance": "substitute",
-          "shirt": 20,
-          "position": "LCF",
-          "goals": 1,
-          "points": 1,
-          "frees": null,
-          "two_pointers": 0,
-          "notes": "Introduced 45th minute"
-        }
-      ]
-    },
-    {
-      "date": "2026-03-07",
-      "opponent": "St Sylvester's",
-      "competition": "Minor Football League Division 2",
-      "score": {
-        "for": { "goals": 1, "points": 6 },
-        "against": { "goals": 1, "points": 6 }
-      },
-      "report_status": "partial",
-      "source": {
-        "type": "club_report",
-        "reference": "sideline notes"
-      },
-      "appearances": [
-        {
-          "player": "Rian Rogan",
-          "appearance": "start",
-          "shirt": 8,
-          "position": "MF",
-          "goals": 0,
-          "points": 2,
-          "frees": 1,
-          "two_pointers": 0,
-          "notes": null
-        },
-        {
-          "player": "Sean Fitzpatrick",
           "appearance": "start",
           "shirt": 1,
           "position": "GK",
@@ -113,15 +204,1287 @@
           "notes": null
         },
         {
-          "player": "Cian Doyle",
-          "appearance": "played",
-          "shirt": null,
+          "player": "James O'Brien",
+          "appearance": "start",
+          "shirt": 2,
+          "position": "RCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Theo Dunne",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Patrick Corcoran",
+          "appearance": "start",
+          "shirt": 4,
+          "position": "LCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ronan McNally",
+          "appearance": "start",
+          "shirt": 5,
+          "position": "RHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Seb Kenny",
+          "appearance": "start",
+          "shirt": 6,
           "position": "CHB",
           "goals": 0,
           "points": 0,
           "frees": null,
           "two_pointers": null,
-          "notes": "Report did not record start/sub status"
+          "notes": null
+        },
+        {
+          "player": "Louis Burke",
+          "appearance": "start",
+          "shirt": 7,
+          "position": "LHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 5,
+          "frees": 3,
+          "two_pointers": 0,
+          "notes": "Three crucial frees noted in the final quarter."
+        },
+        {
+          "player": "Liam Hogan",
+          "appearance": "start",
+          "shirt": 9,
+          "position": "MF",
+          "goals": 0,
+          "points": 2,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jack Johnston",
+          "appearance": "start",
+          "shirt": 10,
+          "position": "RHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Daniel Burns",
+          "appearance": "start",
+          "shirt": 11,
+          "position": "CHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jamie Condron",
+          "appearance": "start",
+          "shirt": 12,
+          "position": "LHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cillian Brennan",
+          "appearance": "start",
+          "shirt": 13,
+          "position": "RCF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ben Donnery",
+          "appearance": "start",
+          "shirt": 14,
+          "position": "FF",
+          "goals": 1,
+          "points": 1,
+          "frees": 1,
+          "two_pointers": 0,
+          "notes": "Injury-time free was the winning score."
+        },
+        {
+          "player": "Cillian McCauley",
+          "appearance": "start",
+          "shirt": 15,
+          "position": "LCF",
+          "goals": 1,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "date": "2026-03-15",
+      "opponent": "Raheny",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 1,
+          "points": 12
+        },
+        "against": {
+          "goals": 1,
+          "points": 9
+        }
+      },
+      "report_status": "result_only",
+      "source": {
+        "type": "official_fixture_list",
+        "reference": "Official Division 2 result only; no player-level report found."
+      },
+      "appearances": []
+    },
+    {
+      "date": "2026-03-28",
+      "opponent": "Whitehall Colmcille",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 0,
+          "points": 11
+        },
+        "against": {
+          "goals": 0,
+          "points": 10
+        }
+      },
+      "report_status": "full",
+      "source": {
+        "type": "club_report",
+        "reference": "Club report dated 28-Mar-2026; official fixture listing appears to use 27-Mar-2026."
+      },
+      "appearances": [
+        {
+          "player": "Dylan Collins",
+          "appearance": "start",
+          "shirt": 1,
+          "position": "GK",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "James O'Brien",
+          "appearance": "start",
+          "shirt": 2,
+          "position": "RCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Brian McIntyre-Barn",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jack Johnston",
+          "appearance": "start",
+          "shirt": 4,
+          "position": "LCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Theo Dunne",
+          "appearance": "start",
+          "shirt": 5,
+          "position": "RHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Seb Kenny",
+          "appearance": "start",
+          "shirt": 6,
+          "position": "CHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ronan McNally",
+          "appearance": "start",
+          "shirt": 7,
+          "position": "LHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 4,
+          "frees": null,
+          "two_pointers": 1,
+          "notes": null
+        },
+        {
+          "player": "Adam Kerr",
+          "appearance": "start",
+          "shirt": 9,
+          "position": "MF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jamie Condron",
+          "appearance": "start",
+          "shirt": 10,
+          "position": "RHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Daniel Burns",
+          "appearance": "start",
+          "shirt": 11,
+          "position": "CHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Liam Hogan",
+          "appearance": "start",
+          "shirt": 12,
+          "position": "LHF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ronan Neville",
+          "appearance": "start",
+          "shirt": 13,
+          "position": "RCF",
+          "goals": 0,
+          "points": 2,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ben Donnery",
+          "appearance": "start",
+          "shirt": 14,
+          "position": "FF",
+          "goals": 0,
+          "points": 2,
+          "frees": 2,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Cillian McCauley",
+          "appearance": "start",
+          "shirt": 15,
+          "position": "LCF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Oisín Cronin",
+          "appearance": "played",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": 0,
+          "notes": "Scorer named; start/substitute status not specified."
+        }
+      ]
+    },
+    {
+      "date": "2026-05-03",
+      "opponent": "Cuala",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 3,
+          "points": 15
+        },
+        "against": {
+          "goals": 0,
+          "points": 15
+        }
+      },
+      "report_status": "full",
+      "source": {
+        "type": "club_report",
+        "reference": "Club match report, 03-May-2026."
+      },
+      "appearances": [
+        {
+          "player": "Dylan Collins",
+          "appearance": "start",
+          "shirt": 1,
+          "position": "GK",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Patrick Corcoran",
+          "appearance": "start",
+          "shirt": 2,
+          "position": "RCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Brian McIntyre-Barn",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "James O'Brien",
+          "appearance": "start",
+          "shirt": 4,
+          "position": "LCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Theo Dunne",
+          "appearance": "start",
+          "shirt": 5,
+          "position": "RHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Seb Kenny",
+          "appearance": "start",
+          "shirt": 6,
+          "position": "CHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jack Johnston",
+          "appearance": "start",
+          "shirt": 7,
+          "position": "LHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Adam Kerr",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 9,
+          "position": "MF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Killian Lyons",
+          "appearance": "start",
+          "shirt": 10,
+          "position": "RHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ben Donnery",
+          "appearance": "start",
+          "shirt": 11,
+          "position": "CHF",
+          "goals": 1,
+          "points": 8,
+          "frees": null,
+          "two_pointers": 2,
+          "notes": "First-half return was 1-5; goal came from a penalty."
+        },
+        {
+          "player": "Daniel Burns",
+          "appearance": "start",
+          "shirt": 12,
+          "position": "LHF",
+          "goals": 0,
+          "points": 2,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cillian McCauley",
+          "appearance": "start",
+          "shirt": 13,
+          "position": "RCF",
+          "goals": 1,
+          "points": 3,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Liam Hogan",
+          "appearance": "start",
+          "shirt": 14,
+          "position": "FF",
+          "goals": 1,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ronan Neville",
+          "appearance": "start",
+          "shirt": 15,
+          "position": "LCF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "opponent": "Templeogue Synge St",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 1,
+          "points": 9
+        },
+        "against": {
+          "goals": 1,
+          "points": 8
+        }
+      },
+      "report_status": "result_only",
+      "source": {
+        "type": "official_fixture_list",
+        "reference": "Official Division 2 result only; no player-level report found."
+      },
+      "appearances": []
+    },
+    {
+      "date": "2026-05-17",
+      "opponent": "Naomh Olaf",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 3,
+          "points": 13
+        },
+        "against": {
+          "goals": 0,
+          "points": 9
+        }
+      },
+      "report_status": "result_only",
+      "source": {
+        "type": "official_fixture_list",
+        "reference": "Official Division 2 result only; no player-level report found."
+      },
+      "appearances": []
+    },
+    {
+      "date": "2026-06-25",
+      "opponent": "Fingallians",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 1,
+          "points": 18
+        },
+        "against": {
+          "goals": 1,
+          "points": 11
+        }
+      },
+      "report_status": "full",
+      "source": {
+        "type": "club_report",
+        "reference": "Club report dated 25-Jun-2026 gives 1-18 to 1-11. Official fixture list shows 24-Jun-2026 and 1-19 to 1-11. Narrative mentions a Ronan McNally point not present in the scorer line; none assigned pending confirmation."
+      },
+      "appearances": [
+        {
+          "player": "Dylan Collins",
+          "appearance": "start",
+          "shirt": 1,
+          "position": "GK",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Frankie May",
+          "appearance": "start",
+          "shirt": 2,
+          "position": "RCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Brian McIntyre-Barn",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "James O'Brien",
+          "appearance": "start",
+          "shirt": 4,
+          "position": "LCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jack Johnston",
+          "appearance": "start",
+          "shirt": 5,
+          "position": "RHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ronan McNally",
+          "appearance": "start",
+          "shirt": 6,
+          "position": "CHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": 0,
+          "notes": "Narrative mentions a point, but scorer line does not."
+        },
+        {
+          "player": "Theo Dunne",
+          "appearance": "start",
+          "shirt": 7,
+          "position": "LHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Liam Hogan",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 4,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 9,
+          "position": "MF",
+          "goals": 0,
+          "points": 2,
+          "frees": 1,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Ronan Neville",
+          "appearance": "start",
+          "shirt": 10,
+          "position": "RHF",
+          "goals": 1,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Daniel Burns",
+          "appearance": "start",
+          "shirt": 11,
+          "position": "CHF",
+          "goals": 0,
+          "points": 4,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Oisín Cronin",
+          "appearance": "start",
+          "shirt": 12,
+          "position": "LHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cillian McCauley",
+          "appearance": "start",
+          "shirt": 13,
+          "position": "RCF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Finn O'Donnell",
+          "appearance": "start",
+          "shirt": 14,
+          "position": "FF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Eoghan Madden",
+          "appearance": "start",
+          "shirt": 15,
+          "position": "LCF",
+          "goals": 0,
+          "points": 5,
+          "frees": 3,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Darragh Fay",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jamie Condron",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Killian Lyons",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cillian Brennan",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "C Smullen",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Robert Bolton",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "opponent": "Round Towers Clondalkin",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 1,
+          "points": 17
+        },
+        "against": {
+          "goals": 3,
+          "points": 6
+        }
+      },
+      "report_status": "full",
+      "source": {
+        "type": "club_report",
+        "reference": "Club report dated 02-Jul-2026; official fixture listing appears to use 01-Jul-2026."
+      },
+      "appearances": [
+        {
+          "player": "Dylan Collins",
+          "appearance": "start",
+          "shirt": 1,
+          "position": "GK",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Frankie May",
+          "appearance": "start",
+          "shirt": 2,
+          "position": "RCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Brian McIntyre-Barn",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "James O'Brien",
+          "appearance": "start",
+          "shirt": 4,
+          "position": "LCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Adam Kerr",
+          "appearance": "start",
+          "shirt": 5,
+          "position": "RHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ronan McNally",
+          "appearance": "start",
+          "shirt": 6,
+          "position": "CHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Theo Dunne",
+          "appearance": "start",
+          "shirt": 7,
+          "position": "LHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Liam Hogan",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 9,
+          "position": "MF",
+          "goals": 0,
+          "points": 6,
+          "frees": 2,
+          "two_pointers": 2,
+          "notes": null
+        },
+        {
+          "player": "Ronan Neville",
+          "appearance": "start",
+          "shirt": 10,
+          "position": "RHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Daniel Burns",
+          "appearance": "start",
+          "shirt": 11,
+          "position": "CHF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Jamie Condron",
+          "appearance": "start",
+          "shirt": 12,
+          "position": "LHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cillian McCauley",
+          "appearance": "start",
+          "shirt": 13,
+          "position": "RCF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Finn O'Donnell",
+          "appearance": "start",
+          "shirt": 14,
+          "position": "FF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Eoghan Madden",
+          "appearance": "start",
+          "shirt": 15,
+          "position": "LCF",
+          "goals": 1,
+          "points": 8,
+          "frees": 2,
+          "two_pointers": 1,
+          "notes": null
+        },
+        {
+          "player": "Jack Johnston",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Charlie O'Connell",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Oisín Cronin",
+          "appearance": "substitute",
+          "shirt": null,
+          "position": null,
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "opponent": "Castleknock",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": {
+          "goals": 1,
+          "points": 17
+        },
+        "against": {
+          "goals": 2,
+          "points": 12
+        }
+      },
+      "report_status": "result_only",
+      "source": {
+        "type": "official_fixture_list",
+        "reference": "Official Division 2 result only; no player-level report found."
+      },
+      "appearances": []
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "St Brigid's",
+      "competition": "Minor A Championship",
+      "score": {
+        "for": {
+          "goals": 1,
+          "points": 11
+        },
+        "against": {
+          "goals": 2,
+          "points": 14
+        }
+      },
+      "report_status": "full",
+      "source": {
+        "type": "club_report",
+        "reference": "Club championship report. Eoghan Madden missed the match after breaking a finger on the preceding Thursday."
+      },
+      "appearances": [
+        {
+          "player": "Dylan Collins",
+          "appearance": "start",
+          "shirt": 1,
+          "position": "GK",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Frankie May",
+          "appearance": "start",
+          "shirt": 2,
+          "position": "RCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Brian McIntyre-Barn",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "James O'Brien",
+          "appearance": "start",
+          "shirt": 4,
+          "position": "LCB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Theo Dunne",
+          "appearance": "start",
+          "shirt": 5,
+          "position": "RHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": 0,
+          "notes": "Strong tackler who likes to get forward."
+        },
+        {
+          "player": "Ronan McNally",
+          "appearance": "start",
+          "shirt": 6,
+          "position": "CHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": 0,
+          "notes": "Excellent in possession in the build-up to Liam Hogan's goal."
+        },
+        {
+          "player": "Seb Kenny",
+          "appearance": "start",
+          "shirt": 7,
+          "position": "LHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Adam Kerr",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 9,
+          "position": "MF",
+          "goals": 0,
+          "points": 4,
+          "frees": 2,
+          "two_pointers": 0,
+          "notes": "Won a lot of ball at midfield. Team won 11 of 15 first-half kick-outs."
+        },
+        {
+          "player": "Liam Hogan",
+          "appearance": "start",
+          "shirt": 10,
+          "position": "RHF",
+          "goals": 1,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Daniel Burns",
+          "appearance": "start",
+          "shirt": 11,
+          "position": "CHF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Darragh Fay",
+          "appearance": "start",
+          "shirt": 12,
+          "position": "LHF",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Ben Donnery",
+          "appearance": "start",
+          "shirt": 13,
+          "position": "RCF",
+          "goals": 0,
+          "points": 1,
+          "frees": 1,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Robert Cotter",
+          "appearance": "start",
+          "shirt": 14,
+          "position": "FF",
+          "goals": 0,
+          "points": 1,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cillian McCauley",
+          "appearance": "start",
+          "shirt": 15,
+          "position": "LCF",
+          "goals": 0,
+          "points": 3,
+          "frees": 1,
+          "two_pointers": 0,
+          "notes": null
         }
       ]
     }
