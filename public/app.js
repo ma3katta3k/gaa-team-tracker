@@ -410,6 +410,21 @@ function buildIntercountyGroupEl(group) {
   }
   wrap.appendChild(header);
 
+  const allMatches = [...group.competitions.values()].flat();
+  if (allMatches.length > 0) {
+    const overallStarts = allMatches.filter((m) => m.appearance_type === "start").length;
+    const overallGoals = allMatches.reduce((sum, m) => sum + m.goals, 0);
+    const overallPoints = allMatches.reduce((sum, m) => sum + m.points, 0);
+
+    const overall = document.createElement("div");
+    overall.className = "intercounty-overall";
+    overall.innerHTML = `
+      <span class="intercounty-overall-label">Overall</span>
+      <span>${allMatches.length} appearance${allMatches.length === 1 ? "" : "s"} · ${overallStarts} start${overallStarts === 1 ? "" : "s"} · <span class="score">${scoreLine(overallGoals, overallPoints)}</span></span>
+    `;
+    wrap.appendChild(overall);
+  }
+
   const sortedCompetitions = [...group.competitions.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 
   if (sortedCompetitions.length === 0) {

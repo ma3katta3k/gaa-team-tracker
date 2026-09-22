@@ -384,6 +384,34 @@ h3 {
   color: var(--text);
 }
 
+.intercounty-overall {
+  font-size: 12px;
+  color: var(--text-dim);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.intercounty-overall-label {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  margin-right: 6px;
+}
+
+.intercounty-overall .score {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* The overall block already has its own bottom border, so the competition
+   section directly after it should not also draw a top border. */
+.intercounty-overall + .intercounty-competition {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+
 .intercounty-competition {
   padding-top: 10px;
   margin-top: 10px;
