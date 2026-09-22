@@ -43,6 +43,8 @@ const el = {
   pitchMatchTitle: document.getElementById("pitch-match-title"),
   pitchMatchMeta: document.getElementById("pitch-match-meta"),
   pitchJerseys: document.getElementById("pitch-jerseys"),
+  intercountySection: document.getElementById("intercounty-section"),
+  intercountyGroups: document.getElementById("intercounty-groups"),
 };
 
 async function api(path) {
@@ -229,6 +231,15 @@ async function selectPlayer(playerId) {
   }
 
   renderPlayer(player, appearances);
+
+  // Inter-county data is supplementary and fetched independently of the club
+  // player/appearances call above, so a failure here never affects club rendering.
+  try {
+    const intercounty = await api(`/api/players/${playerId}/intercounty`);
+    renderIntercounty(intercounty);
+  } catch (err) {
+    el.intercountySection.classList.add("hidden");
+  }
 }
 
 function renderPlayer(player, appearances) {
@@ -325,6 +336,141 @@ function renderPlayer(player, appearances) {
 }
 
 // ---------------------------------------------------------------------------
+// Inter-county section (separate data source; never touches club stats above)
+// ---------------------------------------------------------------------------
+
+function intercountyGroupKey(row) {
+  return `${row.county}::${row.grade}::${row.season}`;
+}
+
+function renderIntercounty(data) {
+  const { memberships, appearances } = data;
+
+  if (memberships.length === 0 && appearances.length === 0) {
+    el.intercountySection.classList.add("hidden");
+    el.intercountyGroups.innerHTML = "";
+    return;
+  }
+
+  // Group by county+grade+season, then within that by competition.
+  const groups = new Map();
+  const getGroup = (row) => {
+    const key = intercountyGroupKey(row);
+    if (!groups.has(key)) {
+      groups.set(key, { county: row.county, grade: row.grade, season: row.season, membership: null, competitions: new Map() });
+    }
+    return groups.get(key);
+  };
+
+  for (const m of memberships) {
+    getGroup(m).membership = m;
+  }
+
+  for (const a of appearances) {
+    const group = getGroup(a);
+    if (!group.competitions.has(a.competition)) {
+      group.competitions.set(a.competition, []);
+    }
+    group.competitions.get(a.competition).push(a);
+  }
+
+  const sortedGroups = [...groups.values()].sort((a, b) => b.season - a.season || a.county.localeCompare(b.county));
+
+  el.intercountyGroups.innerHTML = "";
+  for (const group of sortedGroups) {
+    el.intercountyGroups.appendChild(buildIntercountyGroupEl(group));
+  }
+
+  el.intercountySection.classList.remove("hidden");
+}
+
+function buildIntercountyGroupEl(group) {
+  const wrap = document.createElement("div");
+  wrap.className = "intercounty-group";
+
+  const header = document.createElement("div");
+  header.className = "intercounty-group-header";
+  header.innerHTML = `<span>${group.county} ${group.grade} · ${group.season}</span>`;
+  if (group.membership) {
+    const badge = document.createElement("span");
+    badge.className = "intercounty-panel-badge";
+    badge.textContent = "On panel";
+    header.appendChild(badge);
+  }
+  wrap.appendChild(header);
+
+  const sortedCompetitions = [...group.competitions.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+
+  if (sortedCompetitions.length === 0) {
+    const note = document.createElement("div");
+    note.className = "intercounty-competition-summary";
+    note.textContent = "On panel, no recorded match appearances yet.";
+    wrap.appendChild(note);
+  }
+
+  for (const [competition, matches] of sortedCompetitions) {
+    wrap.appendChild(buildIntercountyCompetitionEl(competition, matches));
+  }
+
+  return wrap;
+}
+
+function buildIntercountyCompetitionEl(competition, matches) {
+  const sorted = matches.slice().sort((a, b) => b.date.localeCompare(a.date));
+  const starts = sorted.filter((m) => m.appearance_type === "start").length;
+  const goals = sorted.reduce((sum, m) => sum + m.goals, 0);
+  const points = sorted.reduce((sum, m) => sum + m.points, 0);
+
+  const el2 = document.createElement("div");
+  el2.className = "intercounty-competition";
+  el2.innerHTML = `
+    <div class="intercounty-competition-name">${competition}</div>
+    <div class="intercounty-competition-summary">
+      ${sorted.length} appearance${sorted.length === 1 ? "" : "s"} · ${starts} start${starts === 1 ? "" : "s"}
+      &nbsp;·&nbsp;<span class="score">${scoreLine(goals, points)}</span>
+    </div>
+  `;
+
+  for (const m of sorted) {
+    el2.appendChild(buildIntercountyMatchRowEl(m));
+  }
+
+  return el2;
+}
+
+function buildIntercountyMatchRowEl(m) {
+  const row = document.createElement("div");
+  row.className = "intercounty-match-row";
+
+  const extras = [];
+  if (m.two_pointers !== null && m.two_pointers !== undefined) extras.push(`${m.two_pointers}×2pt`);
+  if (m.shirt_number) extras.push(`#${m.shirt_number}`);
+  if (m.position) extras.push(m.position);
+  if (m.competition_stage) extras.push(m.competition_stage);
+
+  row.innerHTML = `
+    <span class="intercounty-match-date">${formatDayMonth(m.date)}</span>
+    <span class="intercounty-match-opponent">${m.opponent}</span>
+    <span class="intercounty-match-appearance">${APPEARANCE_LABELS[m.appearance_type] || m.appearance_type}</span>
+    <span class="intercounty-match-score">${scoreLine(m.goals, m.points)}</span>
+    ${extras.length ? `<span class="intercounty-match-extra">${extras.join(" · ")}</span>` : ""}
+  `;
+
+  if (m.source_url) {
+    const link = document.createElement("a");
+    link.className = "intercounty-source-link";
+    link.href = m.source_url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Source ↗";
+    link.title = m.source_description || m.source_url;
+    row.appendChild(link);
+  }
+
+  return row;
+}
+
+// ---------------------------------------------------------------------------
 // Pitch view
 // ---------------------------------------------------------------------------
 
@@ -361,6 +507,12 @@ const SHORT_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "S
 function formatMatchDate(iso) {
   const [y, m, d] = iso.split("-").map(Number);
   return `${d} ${SHORT_MONTHS[m - 1]} ${y}`;
+}
+
+// Same parsing, no year — used where the year is already shown by a parent heading.
+function formatDayMonth(iso) {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${d} ${SHORT_MONTHS[m - 1]}`;
 }
 
 // Short label for the jersey marker: last word of the name (surname for

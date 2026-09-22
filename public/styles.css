@@ -348,6 +348,119 @@ h3 {
   color: var(--warn);
 }
 
+/* ---------- Inter-county section ---------- */
+
+.intercounty-section {
+  margin-bottom: 24px;
+}
+
+.intercounty-group {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.intercounty-group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.intercounty-panel-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--text);
+}
+
+.intercounty-competition {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.intercounty-competition:first-of-type {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+
+.intercounty-competition-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.intercounty-competition-summary {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 2px 0 8px 0;
+}
+
+.intercounty-competition-summary .score {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.intercounty-match-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.intercounty-match-date {
+  color: var(--text-dim);
+  width: 44px;
+  flex-shrink: 0;
+}
+
+.intercounty-match-opponent {
+  flex: 1;
+  min-width: 90px;
+}
+
+.intercounty-match-appearance {
+  color: var(--text-dim);
+  width: 60px;
+  flex-shrink: 0;
+}
+
+.intercounty-match-score {
+  font-weight: 600;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.intercounty-match-extra {
+  color: var(--text-dim);
+  font-size: 11px;
+  flex-basis: 100%;
+}
+
+.intercounty-source-link {
+  color: var(--accent);
+  font-size: 11px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.intercounty-source-link:hover {
+  text-decoration: underline;
+}
+
 /* ---------- Match cards (mobile match history) ---------- */
 
 .matches-cards {

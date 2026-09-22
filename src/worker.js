@@ -108,6 +108,38 @@ async function matchAppearances(env, matchId) {
   return json({ match, appearances: results });
 }
 
+async function playerIntercounty(env, playerId) {
+  const player = await env.DB.prepare("SELECT id FROM players WHERE id = ?").bind(playerId).first();
+  if (!player) return notFound("Player not found");
+
+  const memberships = await env.DB.prepare(
+    `SELECT m.id, t.county, t.grade, s.season,
+            src.url AS source_url, src.description AS source_description
+     FROM player_intercounty_memberships m
+     JOIN intercounty_seasons s ON s.id = m.intercounty_season_id
+     JOIN intercounty_teams t ON t.id = s.intercounty_team_id
+     LEFT JOIN sources src ON src.id = m.source_id
+     WHERE m.player_id = ?
+     ORDER BY s.season DESC, t.county ASC, t.grade ASC`
+  ).bind(playerId).all();
+
+  const appearances = await env.DB.prepare(
+    `SELECT a.id, t.county, t.grade, s.season,
+            im.competition, im.competition_stage, im.date, im.opponent,
+            a.appearance_type, a.shirt_number, a.position, a.goals, a.points, a.two_pointers,
+            src.url AS source_url, src.description AS source_description
+     FROM player_intercounty_appearances a
+     JOIN intercounty_matches im ON im.id = a.intercounty_match_id
+     JOIN intercounty_seasons s ON s.id = im.intercounty_season_id
+     JOIN intercounty_teams t ON t.id = s.intercounty_team_id
+     LEFT JOIN sources src ON src.id = a.source_id
+     WHERE a.player_id = ?
+     ORDER BY im.date DESC`
+  ).bind(playerId).all();
+
+  return json({ memberships: memberships.results, appearances: appearances.results });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -134,6 +166,9 @@ export default {
       }
       if ((m = pathname.match(/^\/api\/players\/(\d+)\/appearances$/))) {
         return await playerAppearances(env, m[1], url.searchParams.get("season"));
+      }
+      if ((m = pathname.match(/^\/api\/players\/(\d+)\/intercounty$/))) {
+        return await playerIntercounty(env, m[1]);
       }
       if ((m = pathname.match(/^\/api\/players\/(\d+)$/))) {
         return await playerDetail(env, m[1]);
