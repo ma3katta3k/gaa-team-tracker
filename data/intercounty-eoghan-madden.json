@@ -1,0 +1,76 @@
+{
+  "players": [
+    {
+      "name": "Eoghan Madden",
+      "club": "Naomh Mearnóg",
+      "county": "Dublin",
+      "grade": "Minor Football",
+      "season": 2026,
+      "membership": {
+        "panel_member": true,
+        "source_url": "https://www.dublingaa.ie/mens-football/minors-team"
+      },
+      "appearances": [
+        {
+          "date": "2026-03-24",
+          "opponent": "Offaly",
+          "competition": "Electric Ireland Leinster Minor Football Championship",
+          "competition_stage": "Group 2 Round 1",
+          "appearance_type": "start",
+          "shirt_number": 13,
+          "position": "RCF",
+          "goals": 1,
+          "points": 1,
+          "two_pointers": null,
+          "match_source_url": "https://www.offalyexpress.ie/sport/gaa/brilliant-raftery-runs-riot-for-dubs-as-hard-working-offaly-let-decent-opportunity-slip-6597085",
+          "appearance_source_url": "https://www.offalyexpress.ie/sport/gaa/brilliant-raftery-runs-riot-for-dubs-as-hard-working-offaly-let-decent-opportunity-slip-6597085"
+        },
+        {
+          "date": "2026-04-14",
+          "opponent": "Longford",
+          "competition": "Electric Ireland Leinster Minor Football Championship",
+          "competition_stage": "Round 3",
+          "appearance_type": "start",
+          "shirt_number": 15,
+          "position": "LCF",
+          "goals": 0,
+          "points": 0,
+          "two_pointers": null,
+          "notes": "Replaced by C Wilde in the 58th minute.",
+          "match_source_url": "https://www.dublingaa.ie/news/minor-footballers-overcome-longford-in-leinster-mfc",
+          "appearance_source_url": "https://www.dublingaa.ie/news/minor-footballers-overcome-longford-in-leinster-mfc"
+        },
+        {
+          "date": "2026-05-12",
+          "opponent": "Meath",
+          "competition": "Electric Ireland Leinster Minor Football Championship",
+          "competition_stage": "Semi-final",
+          "appearance_type": "start",
+          "shirt_number": 15,
+          "position": "LCF",
+          "goals": 1,
+          "points": 1,
+          "two_pointers": null,
+          "notes": "Scored Dublin's second goal in the 50th minute after an excellent run from deep by David Lombard.",
+          "match_source_url": "https://www.dublingaa.ie/news/minor-footballers-fall-short-against-meath-in-leinster-semi-final",
+          "appearance_source_url": "https://www.dublingaa.ie/news/minor-footballers-fall-short-against-meath-in-leinster-semi-final"
+        },
+        {
+          "date": "2026-05-31",
+          "opponent": "Donegal",
+          "competition": "Electric Ireland All-Ireland Minor Football Paul McGirr Cup",
+          "competition_stage": "Quarter-final",
+          "appearance_type": "start",
+          "shirt_number": 15,
+          "position": "LCF",
+          "goals": 0,
+          "points": 4,
+          "two_pointers": null,
+          "notes": "Replaced by Andy McDonnell in the 45th minute.",
+          "match_source_url": "https://www.dublingaa.ie/news/disappointment-for-our-minor-footballers-against-donegal",
+          "appearance_source_url": "https://www.dublingaa.ie/news/disappointment-for-our-minor-footballers-against-donegal"
+        }
+      ]
+    }
+  ]
+}

@@ -136,6 +136,9 @@ if (!Array.isArray(data.players)) errors.push('Missing "players" array');
     if (a.two_pointers !== undefined && a.two_pointers !== null && !isNonNegInt(a.two_pointers)) {
       errors.push(`${actx}: two_pointers must be null or a non-negative integer`);
     }
+    if (a.notes !== undefined && a.notes !== null && typeof a.notes !== "string") {
+      errors.push(`${actx}: notes must be null or a string`);
+    }
     if (a.match_source_url !== undefined && a.match_source_url !== null && typeof a.match_source_url !== "string") {
       errors.push(`${actx}: match_source_url must be a string if present`);
     }
@@ -415,8 +418,8 @@ ON CONFLICT(intercounty_season_id, date, opponent) DO UPDATE SET
 
     const appearanceSourceSubquery = upsertSource(a.appearance_source_url);
     statements.push(`
-INSERT INTO player_intercounty_appearances (player_id, intercounty_match_id, appearance_type, shirt_number, position, goals, points, two_pointers, source_id)
-VALUES (${sqlNum(playerId)}, ${matchSubquery}, ${sqlStr(a.appearance_type)}, ${sqlNum(a.shirt_number)}, ${sqlStr(a.position)}, ${sqlNum(a.goals)}, ${sqlNum(a.points)}, ${sqlNum(a.two_pointers)}, ${appearanceSourceSubquery})
+INSERT INTO player_intercounty_appearances (player_id, intercounty_match_id, appearance_type, shirt_number, position, goals, points, two_pointers, notes, source_id)
+VALUES (${sqlNum(playerId)}, ${matchSubquery}, ${sqlStr(a.appearance_type)}, ${sqlNum(a.shirt_number)}, ${sqlStr(a.position)}, ${sqlNum(a.goals)}, ${sqlNum(a.points)}, ${sqlNum(a.two_pointers)}, ${sqlStr(a.notes)}, ${appearanceSourceSubquery})
 ON CONFLICT(player_id, intercounty_match_id) DO UPDATE SET
   appearance_type = excluded.appearance_type,
   shirt_number = excluded.shirt_number,
@@ -424,6 +427,7 @@ ON CONFLICT(player_id, intercounty_match_id) DO UPDATE SET
   goals = excluded.goals,
   points = excluded.points,
   two_pointers = excluded.two_pointers,
+  notes = excluded.notes,
   source_id = excluded.source_id;`);
   }
 }
