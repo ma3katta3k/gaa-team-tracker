@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "gaa-team-tracker",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "e204e78c-60a5-4e1a-8ebf-b738b909761f",
       "migrations_dir": "migrations"
     }
   ]
