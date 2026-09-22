@@ -396,6 +396,17 @@ function buildIntercountyGroupEl(group) {
     badge.className = "intercounty-panel-badge";
     badge.textContent = "On panel";
     header.appendChild(badge);
+
+    if (group.membership.source_url) {
+      const link = document.createElement("a");
+      link.className = "intercounty-source-link";
+      link.href = group.membership.source_url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Panel source ↗";
+      link.title = group.membership.source_description || group.membership.source_url;
+      header.appendChild(link);
+    }
   }
   wrap.appendChild(header);
 
