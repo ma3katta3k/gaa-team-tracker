@@ -465,6 +465,7 @@ function buildIntercountyMatchRowEl(m) {
     <span class="intercounty-match-appearance">${APPEARANCE_LABELS[m.appearance_type] || m.appearance_type}</span>
     <span class="intercounty-match-score">${scoreLine(m.goals, m.points)}</span>
     ${extras.length ? `<span class="intercounty-match-extra">${extras.join(" · ")}</span>` : ""}
+    ${m.notes ? `<span class="intercounty-match-notes">${m.notes}</span>` : ""}
   `;
 
   if (m.source_url) {

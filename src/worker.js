@@ -126,7 +126,7 @@ async function playerIntercounty(env, playerId) {
   const appearances = await env.DB.prepare(
     `SELECT a.id, t.county, t.grade, s.season,
             im.competition, im.competition_stage, im.date, im.opponent,
-            a.appearance_type, a.shirt_number, a.position, a.goals, a.points, a.two_pointers,
+            a.appearance_type, a.shirt_number, a.position, a.goals, a.points, a.two_pointers, a.notes,
             src.url AS source_url, src.description AS source_description
      FROM player_intercounty_appearances a
      JOIN intercounty_matches im ON im.id = a.intercounty_match_id

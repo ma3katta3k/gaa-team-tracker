@@ -450,6 +450,16 @@ h3 {
   flex-basis: 100%;
 }
 
+.intercounty-match-notes {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.4;
+  flex-basis: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .intercounty-source-link {
   color: var(--accent);
   font-size: 11px;
