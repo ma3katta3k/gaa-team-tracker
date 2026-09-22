@@ -354,6 +354,22 @@ function isChampionship(competition) {
   return /championship/i.test(competition || "");
 }
 
+const SHORT_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// Parses the "YYYY-MM-DD" string directly (not via `new Date`) so the
+// displayed day can't shift due to local-timezone interpretation of UTC midnight.
+function formatMatchDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} ${SHORT_MONTHS[m - 1]} ${y}`;
+}
+
+// Short label for the jersey marker: last word of the name (surname for
+// almost all real names), so the pitch layout stays compact and predictable.
+function shortDisplayName(name) {
+  const parts = name.trim().split(/\s+/);
+  return parts[parts.length - 1];
+}
+
 // Latest championship match first, then most recent match overall as fallback candidates.
 function pitchMatchCandidates(matches) {
   const byDateDesc = (a, b) => b.date.localeCompare(a.date);
@@ -441,8 +457,8 @@ async function loadPitchView() {
 function renderPitch() {
   const { match, jerseys } = state.pitch;
 
-  el.pitchMatchTitle.textContent = `vs ${match.opponent}`;
-  el.pitchMatchMeta.textContent = `${match.date} · ${match.competition} · ${scoreLine(match.goals_for, match.points_for)} – ${scoreLine(match.goals_against, match.points_against)}`;
+  el.pitchMatchTitle.textContent = isChampionship(match.competition) ? "Latest Championship XV" : "Latest Starting XV";
+  el.pitchMatchMeta.textContent = `v ${match.opponent} · ${formatMatchDate(match.date)}`;
 
   el.pitchStatus.classList.add("hidden");
   el.pitchContent.classList.remove("hidden");
@@ -474,10 +490,16 @@ function buildJerseyEl(jersey, coords) {
   wrap.setAttribute("role", "button");
   wrap.setAttribute("aria-label", `${jersey.name}, ${jersey.position || "position unknown"}`);
 
-  const number = document.createElement("span");
-  number.className = "jersey-number";
-  number.textContent = jersey.shirt ?? "?";
-  wrap.appendChild(number);
+  const circle = document.createElement("div");
+  circle.className = "jersey-circle";
+  circle.textContent = jersey.shirt ?? "?";
+  wrap.appendChild(circle);
+
+  const nameLabel = document.createElement("div");
+  nameLabel.className = "jersey-name-label";
+  nameLabel.textContent = shortDisplayName(jersey.name);
+  nameLabel.title = jersey.name;
+  wrap.appendChild(nameLabel);
 
   const { stats } = jersey;
   const popover = document.createElement("div");

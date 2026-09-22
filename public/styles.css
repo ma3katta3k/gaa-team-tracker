@@ -534,6 +534,13 @@ h3 {
 .pitch-jersey {
   position: absolute;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+  touch-action: manipulation;
+  z-index: 1;
+  user-select: none;
+}
+
+.jersey-circle {
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -545,17 +552,36 @@ h3 {
   justify-content: center;
   font-weight: 700;
   font-size: 13px;
-  cursor: pointer;
-  touch-action: manipulation;
-  z-index: 1;
-  user-select: none;
+}
+
+.pitch-jersey:hover .jersey-circle,
+.pitch-jersey:focus-visible .jersey-circle {
+  background: var(--accent-dim);
 }
 
 .pitch-jersey:hover,
 .pitch-jersey:focus-visible {
   z-index: 20;
-  background: var(--accent-dim);
   outline: none;
+}
+
+.jersey-name-label {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 3px;
+  max-width: 72px;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 3px;
+  padding: 1px 4px;
 }
 
 .jersey-popover {
@@ -798,9 +824,14 @@ h3 {
     min-height: 44px;
   }
 
-  .pitch-jersey {
+  .jersey-circle {
     width: 44px;
     height: 44px;
+  }
+
+  .jersey-name-label {
+    max-width: 52px;
+    font-size: 9px;
   }
 
   .jersey-popover-view-btn {
