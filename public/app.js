@@ -27,6 +27,9 @@ const el = {
   statScoreValue: document.getElementById("stat-score-value"),
   positionsUsed: document.getElementById("positions-used"),
   matchesTbody: document.getElementById("matches-tbody"),
+  matchesCards: document.getElementById("matches-cards"),
+  birthYearField: document.getElementById("birth-year-field"),
+  birthYearToggle: document.getElementById("birth-year-toggle"),
 };
 
 async function api(path) {
@@ -69,6 +72,11 @@ async function init() {
   el.seasonSelect.addEventListener("change", () => selectTeam(Number(el.seasonSelect.value)));
   el.birthYearSelect.addEventListener("change", renderPlayerList);
   el.searchInput.addEventListener("input", renderPlayerList);
+
+  el.birthYearToggle.addEventListener("click", () => {
+    const isOpen = el.birthYearField.classList.toggle("open");
+    el.birthYearToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 }
 
 function populateSeasonSelect() {
@@ -174,6 +182,7 @@ async function selectPlayer(playerId) {
   } catch (err) {
     el.playerName.textContent = "Error";
     el.matchesTbody.innerHTML = `<tr><td colspan="9">Failed to load player: ${err.message}</td></tr>`;
+    el.matchesCards.innerHTML = `<div class="empty-state">Failed to load player: ${err.message}</div>`;
     return;
   }
 
@@ -220,18 +229,23 @@ function renderPlayer(player, appearances) {
   }
 
   el.matchesTbody.innerHTML = "";
+  el.matchesCards.innerHTML = "";
+
   if (appearances.length === 0) {
     el.matchesTbody.innerHTML = `<tr><td colspan="9">No match appearances recorded for this season.</td></tr>`;
+    el.matchesCards.innerHTML = `<div class="empty-state">No match appearances recorded for this season.</div>`;
     return;
   }
 
   for (const a of appearances) {
+    const appearanceLabel = APPEARANCE_LABELS[a.appearance_type] || a.appearance_type;
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${a.date}</td>
       <td>${a.opponent}</td>
       <td>${a.competition}</td>
-      <td>${APPEARANCE_LABELS[a.appearance_type] || a.appearance_type}</td>
+      <td>${appearanceLabel}</td>
       <td>${a.position || "—"}</td>
       <td>${a.goals}</td>
       <td>${a.points}</td>
@@ -239,6 +253,32 @@ function renderPlayer(player, appearances) {
       <td class="notes">${a.notes || ""}</td>
     `;
     el.matchesTbody.appendChild(tr);
+
+    const extras = [];
+    if (a.frees !== null && a.frees !== undefined) extras.push(`Frees: ${a.frees}`);
+    if (a.two_pointers !== null && a.two_pointers !== undefined) extras.push(`2-pointers: ${a.two_pointers}`);
+
+    const card = document.createElement("div");
+    card.className = "match-card";
+    card.innerHTML = `
+      <div class="match-card-top">
+        <div class="match-card-opponent">${a.opponent}</div>
+        <div class="match-card-date">${a.date}</div>
+      </div>
+      <div class="match-card-competition">${a.competition}</div>
+      <div class="match-card-tags">
+        <span class="tag">${appearanceLabel}${a.shirt_number ? ` #${a.shirt_number}` : ""}</span>
+        <span class="tag tag-position">${a.position || "Position —"}</span>
+      </div>
+      <div class="match-card-stats">
+        <div class="match-card-stat"><span class="label">Goals</span><span class="value">${a.goals}</span></div>
+        <div class="match-card-stat"><span class="label">Points</span><span class="value">${a.points}</span></div>
+        <div class="match-card-stat"><span class="label">Score</span><span class="value">${scoreLine(a.goals, a.points)}</span></div>
+      </div>
+      ${extras.length ? `<div class="match-card-extra">${extras.join(" · ")}</div>` : ""}
+      ${a.notes ? `<div class="match-card-notes">${a.notes}</div>` : ""}
+    `;
+    el.matchesCards.appendChild(card);
   }
 }
 

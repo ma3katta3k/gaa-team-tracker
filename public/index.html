@@ -17,7 +17,7 @@
     <div class="filters">
       <label class="field">
         <span>Search</span>
-        <input type="text" id="search-input" placeholder="Player name..." autocomplete="off" />
+        <input type="text" id="search-input" placeholder="Player name..." autocomplete="off" inputmode="search" />
       </label>
 
       <label class="field">
@@ -25,12 +25,17 @@
         <select id="season-select"></select>
       </label>
 
-      <label class="field">
-        <span>Birth year</span>
-        <select id="birth-year-select">
-          <option value="">All</option>
-        </select>
-      </label>
+      <div class="field field-collapsible" id="birth-year-field">
+        <button type="button" id="birth-year-toggle" class="filter-toggle-btn" aria-expanded="false" aria-controls="birth-year-body">
+          <span>Birth year</span>
+          <span class="chevron" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="birth-year-body" id="birth-year-body">
+          <select id="birth-year-select">
+            <option value="">All</option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <div id="player-list" class="player-list">
@@ -72,7 +77,7 @@
           <div class="card-value" id="stat-points">0</div>
           <div class="card-label">Points</div>
         </div>
-        <div class="card">
+        <div class="card card-secondary">
           <div class="card-value" id="stat-score-value">0</div>
           <div class="card-label">Score value</div>
         </div>
@@ -103,6 +108,7 @@
             <tbody id="matches-tbody"></tbody>
           </table>
         </div>
+        <div id="matches-cards" class="matches-cards"></div>
       </section>
     </div>
   </main>
