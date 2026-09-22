@@ -120,7 +120,9 @@ the build.
 | `GET /api/teams/:teamId/players` | Players rostered to a team |
 | `GET /api/teams/:teamId/matches` | Matches played by a team |
 | `GET /api/players/:playerId` | Player bio (name, birth year, status) |
-| `GET /api/players/:playerId/appearances?season=2026` | A player's match appearances, optionally filtered by season |
+| `GET /api/players/:playerId/appearances?season=2026` | A player's club match appearances, optionally filtered by season |
+| `GET /api/matches/:matchId/appearances` | Full lineup for one club match (used by Pitch View) |
+| `GET /api/players/:playerId/intercounty` | A player's inter-county panel memberships and match appearances (raw rows; the frontend groups/aggregates them) |
 
 All responses are JSON. Unknown IDs return `404 {"error": "..."}`.
 
@@ -196,6 +198,111 @@ different club, team, or season:
    any team they appear on.
 2. Re-run the seed script. The frontend's season/team selector picks it up
    automatically — no code changes required.
+
+## Inter-county player context
+
+Separate from club data: a player profile can also show an "Inter-County"
+section (county, grade, season, panel membership, and match-by-match
+appearances/stats), sourced from six additional tables
+(`migrations/0002_intercounty.sql`) that never modify or recalculate club
+statistics. The section is hidden entirely for players with no inter-county
+data.
+
+### Schema
+
+- `sources` — reusable `(url, description, retrieved_date)`, deduped by URL.
+- `intercounty_teams` — `(county, grade)`, e.g. "Dublin" / "Minor".
+- `intercounty_seasons` — one year of an `intercounty_teams` row.
+- `intercounty_matches` — belongs to a season; `(date, opponent, competition, competition_stage, source_id)`.
+- `player_intercounty_memberships` — panel membership is its own fact, independent of having played (same split as club `team_players` vs `appearances`).
+- `player_intercounty_appearances` — one row per match actually played; never inferred from membership alone.
+
+Membership and appearance rows reference `players.id` only — there is no
+name field on either table, so this data can only ever attach to an
+**existing** player, never create one.
+
+### Importing inter-county data
+
+`scripts/seed-intercounty.js` is a separate importer from the club
+`scripts/seed.js`, because matching an inter-county player row to an
+existing `players.id` is inherently uncertain in a way club seeding isn't.
+It defaults to a dry-run and never guesses:
+
+```bash
+# Dry run — always safe, never writes, always prints the full match report
+node scripts/seed-intercounty.js --file=path/to/data.json
+
+# Write matched rows only (refuses if any row is unresolved/ambiguous)
+node scripts/seed-intercounty.js --file=path/to/data.json --apply
+
+# Write matched rows, explicitly skipping unresolved/ambiguous ones
+node scripts/seed-intercounty.js --file=path/to/data.json --apply --force
+
+# Target remote D1 (still defaults to --local otherwise)
+node scripts/seed-intercounty.js --file=path/to/data.json --apply --remote
+```
+
+**Player matching** — never by name alone:
+
+1. Normalize the supplied name and look it up against `players.normalized_name`
+   (unique in the schema, so this can only ever return 0 or 1 row).
+2. If found, and a `club` was supplied, cross-check it against that player's
+   known clubs (via `team_players`/`teams`). A contradiction downgrades the
+   row to **AMBIGUOUS** rather than trusting the name match blindly.
+3. If not found, players sharing the same surname are surfaced as candidates
+   for human review — **AMBIGUOUS** if any exist, **UNRESOLVED** if none do.
+4. A clean single match with no contradicting evidence is **MATCHED**.
+
+Only **MATCHED** rows are ever written. Unresolved/ambiguous rows are always
+skipped — the importer never creates a new player and never merges two
+players together.
+
+**Provenance rules the importer enforces:** a membership row is written only
+when the source explicitly states `panel_member: true`; an appearance is
+written only when it's explicitly present in that player's `appearances[]`
+(never inferred from membership, and never invented for a "team sheet but no
+evidence they played" case); `goals`/`points`/`appearance_type` must be
+explicit in the input — the importer rejects a row outright rather than
+defaulting a missing value to 0 or guessing a type.
+
+### Input format
+
+```json
+{
+  "players": [
+    {
+      "name": "Example Player",
+      "club": "Example Club",
+      "county": "Dublin",
+      "grade": "Minor",
+      "season": 2026,
+      "membership": { "panel_member": true, "source_url": "https://..." },
+      "appearances": [
+        {
+          "date": "2026-03-24",
+          "opponent": "Offaly",
+          "competition": "Leinster Minor Football Championship",
+          "competition_stage": "Group 2",
+          "appearance_type": "start",
+          "shirt_number": 15,
+          "position": null,
+          "goals": 1,
+          "points": 1,
+          "two_pointers": 0,
+          "match_source_url": "https://...",
+          "appearance_source_url": "https://..."
+        }
+      ]
+    }
+  ]
+}
+```
+
+`club` and `membership` are optional; `appearances` may be omitted or empty
+(panel-membership-only players). `match_source_url` and
+`appearance_source_url` are independent — a match's basic facts (date,
+opponent, competition) and one player's specific stat line in it can cite
+different sources.
 
 ## What's deliberately not here (yet)
 

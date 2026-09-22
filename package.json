@@ -11,7 +11,8 @@
     "db:migrate:local": "wrangler d1 migrations apply gaa-team-tracker --local",
     "db:migrate:remote": "wrangler d1 migrations apply gaa-team-tracker --remote",
     "seed:local": "node scripts/seed.js --local",
-    "seed:remote": "node scripts/seed.js --remote"
+    "seed:remote": "node scripts/seed.js --remote",
+    "seed:intercounty": "node scripts/seed-intercounty.js"
   },
   "devDependencies": {
     "wrangler": "^4.54.0"

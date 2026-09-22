@@ -4,15 +4,17 @@
 // never duplicated. Any validation failure aborts before touching the DB.
 
 import { readFileSync, writeFileSync, unlinkSync } from "node:fs";
-import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createD1Client, sqlStr, sqlNum } from "./lib/d1.js";
+import { normalizeName } from "./lib/normalize.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_NAME = "gaa-team-tracker";
 const DATA_PATH = path.join(__dirname, "..", "data", "initial-team.json");
 
 const mode = process.argv.includes("--remote") ? "--remote" : "--local";
+const { runD1Json, runD1File } = createD1Client(DB_NAME, mode);
 
 const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const BIRTH_YEAR_STATUSES = ["confirmed", "assumed", "unknown"];
@@ -22,10 +24,6 @@ const POSITIONS = [
   "GK", "RCB", "FB", "LCB", "RHB", "CHB", "LHB",
   "MF", "RHF", "CHF", "LHF", "RCF", "FF", "LCF",
 ];
-
-function normalizeName(name) {
-  return String(name).trim().toLowerCase().replace(/\s+/g, " ");
-}
 
 function isNonNegInt(v) {
   return Number.isInteger(v) && v >= 0;
@@ -177,39 +175,6 @@ console.log(`  Birth year:   ${birthYearCounts.confirmed} confirmed, ${birthYear
 if (process.argv.includes("--check")) {
   console.log("\n--check mode: validation only, database not touched.");
   process.exit(0);
-}
-
-// ---------------------------------------------------------------------------
-// Wrangler helpers
-// ---------------------------------------------------------------------------
-
-function runWrangler(args) {
-  const result = spawnSync("npx", ["wrangler", ...args], { encoding: "utf-8", maxBuffer: 1024 * 1024 * 32 });
-  if (result.status !== 0) {
-    console.error(result.stdout);
-    console.error(result.stderr);
-    throw new Error(`wrangler ${args.join(" ")} failed (exit code ${result.status})`);
-  }
-  return result.stdout;
-}
-
-function runD1Json(sql) {
-  const stdout = runWrangler(["d1", "execute", DB_NAME, mode, "--json", "--command", sql]);
-  return JSON.parse(stdout);
-}
-
-function runD1File(filePath) {
-  runWrangler(["d1", "execute", DB_NAME, mode, "--file", filePath]);
-}
-
-function sqlStr(v) {
-  if (v === null || v === undefined) return "NULL";
-  return `'${String(v).replace(/'/g, "''")}'`;
-}
-
-function sqlNum(v) {
-  if (v === null || v === undefined) return "NULL";
-  return String(Number(v));
 }
 
 // ---------------------------------------------------------------------------
