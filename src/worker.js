@@ -88,6 +88,26 @@ async function playerAppearances(env, playerId, season) {
   return json(results);
 }
 
+async function matchAppearances(env, matchId) {
+  const match = await env.DB.prepare(
+    `SELECT id, team_id, date, opponent, competition, goals_for, points_for,
+            goals_against, points_against, source_reference, source_type, report_status
+     FROM matches WHERE id = ?`
+  ).bind(matchId).first();
+  if (!match) return notFound("Match not found");
+
+  const { results } = await env.DB.prepare(
+    `SELECT a.id, a.player_id, p.name AS player_name, a.appearance_type, a.shirt_number,
+            a.position, a.goals, a.points, a.frees, a.two_pointers, a.notes
+     FROM appearances a
+     JOIN players p ON p.id = a.player_id
+     WHERE a.match_id = ?
+     ORDER BY a.shirt_number ASC`
+  ).bind(matchId).all();
+
+  return json({ match, appearances: results });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -108,6 +128,9 @@ export default {
       }
       if ((m = pathname.match(/^\/api\/teams\/(\d+)\/matches$/))) {
         return await teamMatches(env, m[1]);
+      }
+      if ((m = pathname.match(/^\/api\/matches\/(\d+)\/appearances$/))) {
+        return await matchAppearances(env, m[1]);
       }
       if ((m = pathname.match(/^\/api\/players\/(\d+)\/appearances$/))) {
         return await playerAppearances(env, m[1], url.searchParams.get("season"));

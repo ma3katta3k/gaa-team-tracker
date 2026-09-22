@@ -6,6 +6,10 @@ const state = {
   currentTeam: null,
   players: [],
   selectedPlayerId: null,
+  view: "player",
+  matches: [],
+  matchesTeamId: null,
+  pitch: null, // { teamId, match, jerseys: [{ playerId, name, position, shirt, notes, stats }] }
 };
 
 const el = {
@@ -30,6 +34,15 @@ const el = {
   matchesCards: document.getElementById("matches-cards"),
   birthYearField: document.getElementById("birth-year-field"),
   birthYearToggle: document.getElementById("birth-year-toggle"),
+  viewTogglePlayer: document.getElementById("view-toggle-player"),
+  viewTogglePitch: document.getElementById("view-toggle-pitch"),
+  playerViewPanel: document.getElementById("player-view-panel"),
+  pitchViewPanel: document.getElementById("pitch-view-panel"),
+  pitchStatus: document.getElementById("pitch-status"),
+  pitchContent: document.getElementById("pitch-content"),
+  pitchMatchTitle: document.getElementById("pitch-match-title"),
+  pitchMatchMeta: document.getElementById("pitch-match-meta"),
+  pitchJerseys: document.getElementById("pitch-jerseys"),
 };
 
 async function api(path) {
@@ -77,6 +90,32 @@ async function init() {
     const isOpen = el.birthYearField.classList.toggle("open");
     el.birthYearToggle.setAttribute("aria-expanded", String(isOpen));
   });
+
+  el.viewTogglePlayer.addEventListener("click", () => setView("player"));
+  el.viewTogglePitch.addEventListener("click", () => setView("pitch"));
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".pitch-jersey")) closeAllPopovers();
+  });
+}
+
+// ---------------------------------------------------------------------------
+// View toggle
+// ---------------------------------------------------------------------------
+
+function setView(view) {
+  state.view = view;
+  const isPitch = view === "pitch";
+
+  el.playerViewPanel.classList.toggle("hidden", isPitch);
+  el.pitchViewPanel.classList.toggle("hidden", !isPitch);
+
+  el.viewTogglePlayer.classList.toggle("active", !isPitch);
+  el.viewTogglePlayer.setAttribute("aria-selected", String(!isPitch));
+  el.viewTogglePitch.classList.toggle("active", isPitch);
+  el.viewTogglePitch.setAttribute("aria-selected", String(isPitch));
+
+  if (isPitch) loadPitchView();
 }
 
 function populateSeasonSelect() {
@@ -108,6 +147,9 @@ async function selectTeam(teamId) {
   state.selectedPlayerId = null;
   el.playerView.classList.add("hidden");
   el.emptyMain.classList.remove("hidden");
+
+  state.pitch = null;
+  if (state.view === "pitch") loadPitchView();
 }
 
 function populateBirthYearSelect() {
@@ -280,6 +322,218 @@ function renderPlayer(player, appearances) {
     `;
     el.matchesCards.appendChild(card);
   }
+}
+
+// ---------------------------------------------------------------------------
+// Pitch view
+// ---------------------------------------------------------------------------
+
+// Approximate on-pitch coordinates (% of pitch width/height) per position code.
+// Forwards near the top (y small), defenders near the bottom (y large), GK at the very bottom.
+const POSITION_COORDS = {
+  GK: [{ x: 50, y: 95 }],
+  RCB: [{ x: 75, y: 80 }],
+  FB: [{ x: 50, y: 82 }],
+  LCB: [{ x: 25, y: 80 }],
+  RHB: [{ x: 80, y: 63 }],
+  CHB: [{ x: 50, y: 63 }],
+  LHB: [{ x: 20, y: 63 }],
+  MF: [
+    { x: 38, y: 46 },
+    { x: 62, y: 46 },
+  ],
+  RHF: [{ x: 80, y: 30 }],
+  CHF: [{ x: 50, y: 30 }],
+  LHF: [{ x: 20, y: 30 }],
+  RCF: [{ x: 75, y: 12 }],
+  FF: [{ x: 50, y: 10 }],
+  LCF: [{ x: 25, y: 12 }],
+};
+
+function isChampionship(competition) {
+  return /championship/i.test(competition || "");
+}
+
+// Latest championship match first, then most recent match overall as fallback candidates.
+function pitchMatchCandidates(matches) {
+  const byDateDesc = (a, b) => b.date.localeCompare(a.date);
+  const championship = matches.filter((m) => isChampionship(m.competition)).sort(byDateDesc);
+  const all = matches.slice().sort(byDateDesc);
+  const seen = new Set();
+  const ordered = [];
+  for (const m of [...championship, ...all]) {
+    if (!seen.has(m.id)) {
+      seen.add(m.id);
+      ordered.push(m);
+    }
+  }
+  return ordered;
+}
+
+async function loadPitchView() {
+  const teamId = state.currentTeam.id;
+
+  if (state.pitch && state.pitch.teamId === teamId) {
+    renderPitch();
+    return;
+  }
+
+  el.pitchContent.classList.add("hidden");
+  el.pitchStatus.classList.remove("hidden");
+  el.pitchStatus.textContent = "Loading pitch...";
+
+  try {
+    if (state.matchesTeamId !== teamId) {
+      state.matches = await api(`/api/teams/${teamId}/matches`);
+      state.matchesTeamId = teamId;
+    }
+
+    const candidates = pitchMatchCandidates(state.matches);
+    let chosen = null;
+    let starters = null;
+
+    for (const candidate of candidates) {
+      const data = await api(`/api/matches/${candidate.id}/appearances`);
+      const candidateStarters = data.appearances.filter((a) => a.appearance_type === "start");
+      if (candidateStarters.length > 0) {
+        chosen = data.match;
+        starters = candidateStarters;
+        break;
+      }
+    }
+
+    if (!chosen) {
+      el.pitchStatus.textContent = "No match with a starting lineup was found for this team.";
+      state.pitch = null;
+      return;
+    }
+
+    const statsList = await Promise.all(
+      starters.map((s) => api(`/api/players/${s.player_id}/appearances?season=${state.currentTeam.season}`))
+    );
+
+    const jerseys = starters.map((s, i) => {
+      const seasonAppearances = statsList[i];
+      return {
+        playerId: s.player_id,
+        name: s.player_name,
+        position: s.position,
+        shirt: s.shirt_number,
+        notes: s.notes,
+        stats: {
+          games: seasonAppearances.length,
+          starts: seasonAppearances.filter((a) => a.appearance_type === "start").length,
+          goals: seasonAppearances.reduce((sum, a) => sum + a.goals, 0),
+          points: seasonAppearances.reduce((sum, a) => sum + a.points, 0),
+          scoreValue: seasonAppearances.reduce((sum, a) => sum + a.goals * 3 + a.points, 0),
+        },
+      };
+    });
+
+    state.pitch = { teamId, match: chosen, jerseys };
+    renderPitch();
+  } catch (err) {
+    el.pitchStatus.textContent = `Failed to load pitch view: ${err.message}`;
+    state.pitch = null;
+  }
+}
+
+function renderPitch() {
+  const { match, jerseys } = state.pitch;
+
+  el.pitchMatchTitle.textContent = `vs ${match.opponent}`;
+  el.pitchMatchMeta.textContent = `${match.date} · ${match.competition} · ${scoreLine(match.goals_for, match.points_for)} – ${scoreLine(match.goals_against, match.points_against)}`;
+
+  el.pitchStatus.classList.add("hidden");
+  el.pitchContent.classList.remove("hidden");
+  el.pitchJerseys.innerHTML = "";
+
+  const slotIndex = {};
+  for (const jersey of jerseys) {
+    const slots = POSITION_COORDS[jersey.position];
+    let coords;
+    if (slots) {
+      const i = slotIndex[jersey.position] || 0;
+      coords = slots[Math.min(i, slots.length - 1)];
+      slotIndex[jersey.position] = i + 1;
+    } else {
+      coords = { x: 50, y: 50 };
+    }
+    el.pitchJerseys.appendChild(buildJerseyEl(jersey, coords));
+  }
+}
+
+function buildJerseyEl(jersey, coords) {
+  const wrap = document.createElement("div");
+  wrap.className = "pitch-jersey";
+  if (coords.x <= 25) wrap.classList.add("pitch-jersey--edge-left");
+  if (coords.x >= 75) wrap.classList.add("pitch-jersey--edge-right");
+  wrap.style.left = `${coords.x}%`;
+  wrap.style.top = `${coords.y}%`;
+  wrap.tabIndex = 0;
+  wrap.setAttribute("role", "button");
+  wrap.setAttribute("aria-label", `${jersey.name}, ${jersey.position || "position unknown"}`);
+
+  const number = document.createElement("span");
+  number.className = "jersey-number";
+  number.textContent = jersey.shirt ?? "?";
+  wrap.appendChild(number);
+
+  const { stats } = jersey;
+  const popover = document.createElement("div");
+  popover.className = "jersey-popover";
+  popover.innerHTML = `
+    <div class="jersey-popover-name">${jersey.name}</div>
+    <div class="jersey-popover-position">${jersey.position || "Position unknown"}</div>
+    <div class="jersey-popover-stats">
+      <div><span class="label">Games</span><span class="value">${stats.games}</span></div>
+      <div><span class="label">Starts</span><span class="value">${stats.starts}</span></div>
+      <div><span class="label">Goals</span><span class="value">${stats.goals}</span></div>
+      <div><span class="label">Points</span><span class="value">${stats.points}</span></div>
+      <div><span class="label">Score</span><span class="value">${stats.scoreValue}</span></div>
+    </div>
+    ${jersey.notes ? `<div class="jersey-popover-notes">${jersey.notes}</div>` : ""}
+    <button type="button" class="jersey-popover-view-btn">View player &rarr;</button>
+  `;
+  wrap.appendChild(popover);
+
+  popover.querySelector(".jersey-popover-view-btn").addEventListener("click", (e) => {
+    e.stopPropagation();
+    goToPlayerFromPitch(jersey.playerId);
+  });
+  popover.addEventListener("click", (e) => e.stopPropagation());
+
+  wrap.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const hoverCapable = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (hoverCapable) {
+      goToPlayerFromPitch(jersey.playerId);
+    } else {
+      // Idempotent by design: opening never depends on prior state, so a duplicate
+      // click/touch event for the same tap can't accidentally re-close the popover.
+      closeAllPopovers();
+      popover.classList.add("open");
+    }
+  });
+
+  wrap.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      wrap.click();
+    }
+  });
+
+  return wrap;
+}
+
+function closeAllPopovers() {
+  document.querySelectorAll(".jersey-popover.open").forEach((p) => p.classList.remove("open"));
+}
+
+function goToPlayerFromPitch(playerId) {
+  closeAllPopovers();
+  setView("player");
+  selectPlayer(playerId);
 }
 
 init();
