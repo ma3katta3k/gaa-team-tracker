@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GAA Team Tracker</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>GAA Team Tracker</h1>
+      <div id="team-label" class="team-label">Loading...</div>
+    </div>
+
+    <div class="filters">
+      <label class="field">
+        <span>Search</span>
+        <input type="text" id="search-input" placeholder="Player name..." autocomplete="off" />
+      </label>
+
+      <label class="field">
+        <span>Season</span>
+        <select id="season-select"></select>
+      </label>
+
+      <label class="field">
+        <span>Birth year</span>
+        <select id="birth-year-select">
+          <option value="">All</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="player-list" class="player-list">
+      <div class="empty-state">Loading players...</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div id="empty-main" class="empty-main">
+      <p>Select a player from the list to see their profile.</p>
+    </div>
+
+    <div id="player-view" class="player-view hidden">
+      <header class="player-header">
+        <div class="player-identity">
+          <h2 id="player-name">—</h2>
+          <div class="player-meta">
+            <span id="player-birth-year">—</span>
+            <span id="player-birth-status" class="badge">—</span>
+            <span id="player-usual-position" class="badge badge-position">—</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="summary-cards" id="summary-cards">
+        <div class="card">
+          <div class="card-value" id="stat-games">0</div>
+          <div class="card-label">Games</div>
+        </div>
+        <div class="card">
+          <div class="card-value" id="stat-starts">0</div>
+          <div class="card-label">Starts</div>
+        </div>
+        <div class="card">
+          <div class="card-value" id="stat-goals">0</div>
+          <div class="card-label">Goals</div>
+        </div>
+        <div class="card">
+          <div class="card-value" id="stat-points">0</div>
+          <div class="card-label">Points</div>
+        </div>
+        <div class="card">
+          <div class="card-value" id="stat-score-value">0</div>
+          <div class="card-label">Score value</div>
+        </div>
+      </section>
+
+      <section class="positions-section">
+        <h3>Positions used</h3>
+        <div id="positions-used" class="positions-used"></div>
+      </section>
+
+      <section class="matches-section">
+        <h3>Match history</h3>
+        <div class="table-wrap">
+          <table class="matches-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Competition</th>
+                <th>Appearance</th>
+                <th>Position</th>
+                <th>Goals</th>
+                <th>Points</th>
+                <th>Score</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="matches-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

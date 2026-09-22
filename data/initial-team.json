@@ -1,0 +1,129 @@
+{
+  "team": {
+    "club": "Naomh Mearnóg",
+    "name": "Minor A",
+    "season": 2026
+  },
+  "players": [
+    {
+      "name": "Rian Rogan",
+      "birth_year": 2009,
+      "birth_year_status": "confirmed"
+    },
+    {
+      "name": "Dylan Collins",
+      "birth_year": null,
+      "birth_year_status": "unknown"
+    },
+    {
+      "name": "Cian Doyle",
+      "birth_year": 2009,
+      "birth_year_status": "assumed"
+    },
+    {
+      "name": "Sean Fitzpatrick",
+      "birth_year": 2010,
+      "birth_year_status": "confirmed"
+    }
+  ],
+  "matches": [
+    {
+      "date": "2026-02-28",
+      "opponent": "Clontarf",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": { "goals": 2, "points": 8 },
+        "against": { "goals": 1, "points": 10 }
+      },
+      "report_status": "full",
+      "source": {
+        "type": "club_report",
+        "reference": "club match report"
+      },
+      "appearances": [
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 5,
+          "frees": 3,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Cian Doyle",
+          "appearance": "start",
+          "shirt": 3,
+          "position": "FB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Dylan Collins",
+          "appearance": "substitute",
+          "shirt": 20,
+          "position": "LCF",
+          "goals": 1,
+          "points": 1,
+          "frees": null,
+          "two_pointers": 0,
+          "notes": "Introduced 45th minute"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-07",
+      "opponent": "St Sylvester's",
+      "competition": "Minor Football League Division 2",
+      "score": {
+        "for": { "goals": 1, "points": 6 },
+        "against": { "goals": 1, "points": 6 }
+      },
+      "report_status": "partial",
+      "source": {
+        "type": "club_report",
+        "reference": "sideline notes"
+      },
+      "appearances": [
+        {
+          "player": "Rian Rogan",
+          "appearance": "start",
+          "shirt": 8,
+          "position": "MF",
+          "goals": 0,
+          "points": 2,
+          "frees": 1,
+          "two_pointers": 0,
+          "notes": null
+        },
+        {
+          "player": "Sean Fitzpatrick",
+          "appearance": "start",
+          "shirt": 1,
+          "position": "GK",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": null
+        },
+        {
+          "player": "Cian Doyle",
+          "appearance": "played",
+          "shirt": null,
+          "position": "CHB",
+          "goals": 0,
+          "points": 0,
+          "frees": null,
+          "two_pointers": null,
+          "notes": "Report did not record start/sub status"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "gaa-team-tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Reusable GAA team/player tracker (Cloudflare Workers + D1)",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create gaa-team-tracker",
+    "db:migrate:local": "wrangler d1 migrations apply gaa-team-tracker --local",
+    "db:migrate:remote": "wrangler d1 migrations apply gaa-team-tracker --remote",
+    "seed:local": "node scripts/seed.js --local",
+    "seed:remote": "node scripts/seed.js --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.54.0"
+  }
+}
